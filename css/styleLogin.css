@@ -8,6 +8,7 @@ body{
     font:sans-serif;
     background: url(cachorro.png) no-repeat;
     background-size: cover;
+    position: absolute;
 
 }
 .login-background{
