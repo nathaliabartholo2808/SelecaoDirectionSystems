@@ -42,7 +42,6 @@ function cadastrar() {
 
 function voltar() {
     //let url = encodeURIComponent();
-    alert("!")
      fetch('http://localhost:3000/TelaCadastrar/cadastrar.html', {
             method: 'post',
             headers: {
