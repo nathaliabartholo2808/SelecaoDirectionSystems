@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    padding:0;
+    font:sans-serif;
+    background: url(depositphotos_39188335-stock-photo-extended-family-with-their-pet.jpg) no-repeat;
+    background-size: cover;
+    position: absolute;
+
+}.titulo{
+    color:white;
+    float: center;
+    font-size: 40px;
+    
+}
+.outter-box{
+    background-color: purple;
+    width: 800px;
+    height: 300px;
+    position: absolute;
+    opacity: 0.9;
+    top: 20px;
+    left: 500px;
+    padding: 50px 0;
+    border-radius: 10px;
+    text-align: center;
+  
+
+
+}
+.dados  {
+  background: none;
+  border: 1px solid #0cc3e4;
+  color:white;
+  font-size: 18px;
+  margin: 10px;
+  margin-bottom:10px;
+ 
+  }
+  
+  .inputTxt{
+    overflow: hidden;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: rgb(201, 141, 201);
+    color: white;
+    width: 500px;
+    float: center;
+    margin-bottom:10px;
+
+  }
+
+  .btnCadastrar{
+    width: 20%;
+    background: plum;
+    border: 2px solid #0cc3e4;
+    color:white;
+    font-size: 18px;
+    text-align:center ;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 200px;
+
+  }.btnVoltar{
+    width: 20%;
+    background: rgb(211, 123, 145);
+    border: 2px solid #0cc3e4;
+    color:white;
+    font-size: 18px;
+    text-align:center ;
+    cursor: pointer;
+    
+    
+
+  }

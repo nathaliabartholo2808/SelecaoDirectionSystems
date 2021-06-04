@@ -1,74 +1,104 @@
 const fs = require('fs')
-
-
-
-
-
-var readFile;
-var file;
-var fso;
-
-if (file === null) {
-    fso = CreateObject("Scripting.FileSystemObject");
-    file = fso.CreateTextFile(__dirname + "/bd.txt", True);
-} else if (readFile === null) {
-    readFile = new FileReader(file);
-}
-
-
+var fileNameCadastro = __dirname + "/bd.txt"
 
 
 function buscarNome(nome) {
-    while (file.AtEndOfStream) {
-        let linha = readFile.readAsText(file);
-        let achado = linha.search(nome);
+let cont=0
 
-        if (achado !== -1) {
-            return achado; //achou
-        } else {
-            return -1;
-        }
+
+    let linha = fs.readFileSync(fileNameCadastro, 'utf8')
+
+    let array = linha.split('\u000A')
+
+    if (array ==='') {
+        return false
+    } else {
+        do {
+            let achado = array[cont].search(nome);
+            
+            cont++
+            if (achado !== -1) {
+                return true; //achou
+            }
+
+        } while (array.length>cont);
+        return false
     }
+
+
 }
 
-function consultarNome(nome){
+function consultarNome(nome) {
     let achado = buscarNome(nome);
-    if(achado ===-1){
+    if (achado === -1) {
         //avisar o front que nao existe
-    }else{
+    } else {
         //mandar pro front as informações
     }
 }
 
 
 
-function cadastrarPet(nome, raca, porte) {
+exports.cadastrarPet = function (nome, raca, porte) {
     let resultado = buscarNome(nome)
-    if (resultado !==-1) {
-        file.writeline(nome + " " + raca + " " + porte);
-        //avisar o front q cadastrou
-    }else{
-        //avisar o front que ja possue 
+
+    if (!resultado) {
+        fs.writeFile(fileNameCadastro, nome + " " + raca + " " + porte + '\u000A', { flag: 'a+' }, err => {
+            console.log(err)
+        })
+        return true;
+    } else {
+        return false; //avisar o front que ja possue 
     }
 }
 
 
-exports.login= function (user, senha){
+exports.login = function (user, senha) {
     try {
-        const data = fs.readFileSync('./Back/login.txt', 'utf8')
-        
+        const data = fs.readFileSync(__dirname + '/login.txt', 'utf-8')
+
         let array = data.split(" ")
 
 
-        if(array[0]===user && array[1]===senha ){
+        if (array[0] === user && array[1] === senha) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
-      } catch (err) {
+    } catch (err) {
         console.error(err)
-      }
+    }
 
 }
+
+
+exports.eCadastro = function (nomeProcedimento) {
+    if (nomeProcedimento === "cadastrar") {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+
+exports.eConsulta = function (nomeProcedimento) {
+    if (nomeProcedimento === "consultar") {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+exports.eDeslogar = function (nomeProcedimento) {
+
+    if (nomeProcedimento === "deslogar") {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 

@@ -11,29 +11,26 @@ function getUserInfo() {
         alert("Usuário em branco")
     } else if (password.length === valorMinimo) {
         alert("Senha em branco")
-    }else {
-        
-        
-        fetch('http://localhost:3000/login',{
-            method:'post',
-            headers:{
-                "Content-Type":"application/json"
+    } else {
+
+
+        fetch('http://localhost:3000/login', {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify( {user,
-                    password,
+            body: JSON.stringify({
+                user,
+                password,
 
-                })
+            })
 
-        }).then(data =>  data.text()).then(url =>{
-            if(url.length!==0){
-            window.location.replace(url) 
-            }else{
-                alert("Senha Errada!")
+        }).then(data => data.text()).then(url => {
+            if (url.length !== 0) {
+                window.location.replace(url)
+            } else {
+                alert("Usuário ou senha incorreta!")
             }
-        
-    })
-        
-
+        })
     }
-
 }
