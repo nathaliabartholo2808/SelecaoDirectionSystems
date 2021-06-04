@@ -59,23 +59,23 @@ app.post('/TelaMenu/Menu.html', function (req, res) {
 
 app.post('/TelaCadastrar/cadastrar.html', function (req, res) {
   let dados = req.body;
-  let url="http://localhost:3000/TelaMenu/Menu.html";
-  let resultado = processos.cadastrarPet(dados.nomePet, dados.racaPet, dados.portePet)
-  if(resultado){
+  let url = "http://localhost:3000/TelaMenu/Menu.html";
+  if (dados.hasOwnProperty('metodo')) {
     res.send(url)
-  }else{
-    res.send("")
+  } else {
+    let resultado = processos.cadastrarPet(dados.nomePet, dados.racaPet, dados.portePet)
+    if (resultado) {
+      res.send(url)
+    } else {
+      res.send("")
+    }
   }
 })
 
-app.get('/TelaCadastrar/cadastrar.html',function (req, res) {
-  console.log("aqui")
-  res.send("http://localhost:3000/TelaMenu/Menu.html")
-})
 
 
 
- 
+
 app.listen(port, () => {
   console.log(`servidor rodando em http://localhost:${port}`)
 })

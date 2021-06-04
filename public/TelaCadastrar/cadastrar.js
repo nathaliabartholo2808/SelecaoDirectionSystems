@@ -23,6 +23,7 @@ function cadastrar() {
                 nomePet,
                 racaPet,
                 portePet,
+
             })
 
         }).then(data => data.text()).then(url => {
@@ -42,11 +43,16 @@ function cadastrar() {
 function voltar() {
     //let url = encodeURIComponent();
     alert("!")
-    fetch('http://localhost:3000/TelaCadastrar/cadastrar.html', {
-        method: 'get',
-        headers: 'myHeaders',
+     fetch('http://localhost:3000/TelaCadastrar/cadastrar.html', {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+               "metodo":"voltar"           
+            })
 
-    }).then(data => data.text()).then(url => {
+        }).then(data => data.text()).then(url => {
         window.location.replace(url)
 
     })
